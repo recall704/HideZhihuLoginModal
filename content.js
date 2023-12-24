@@ -5,20 +5,19 @@
 // @description  Hidden zhihu login modal
 // @author       recall704
 // @match        *://*.zhihu.com/*
+// @require https://scriptcat.org/lib/513/2.0.0/ElementGetter.js
 // @grant        GM_wait
 // @grant        GM_addStyle
 // ==/UserScript==
 
-/*-- Wait for pages to load before injecting code
-    Credit: Petr Gazarov (https://stackoverflow.com/a/26831113/3315085)
-*/
-window.onload = function() {
-    GM_wait();
-};
 
-function GM_wait() {
+// 回调写法
+(function() {
+    elmGetter.get('.Modal-closeButton').then(parentDiv => {
+    console.log("hidden modal");
     const button = document.querySelector('.Modal-closeButton');
         if (button) {
             button.click();
         }
-}
+    });
+})();
